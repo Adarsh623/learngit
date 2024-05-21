@@ -1,19 +1,18 @@
-# our base image
-FROM alpine:3.5
+# Use the official Python image as a parent image
+FROM python:3.9
 
-# Install python and pip
-RUN apk add --update py2-pip
+# Set the working directory in the container
+WORKDIR /app
 
-# install Python modules needed by the Python app
-COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# copy files required for the app to run
-COPY app.py /usr/src/app/
-COPY templates/index.html /usr/src/app/templates/
+# Install Flask
+RUN pip install Flask
 
-# tell the port number the container should expose
+# Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# run the application
-CMD ["python", "/usr/src/app/app.py"]
+# Run app.py when the container launches
+CMD ["python", "app.py"]
+
