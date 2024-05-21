@@ -8,11 +8,12 @@ WORKDIR /app
 COPY . /app
 
 # Install Flask
-RUN pip install Flask
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    pip install -r requirements.txt
 
+RUN apt-get update
+RUN  apt-get install -y python3 python3-pip 
+RUN pip install -r requirements.txt
+    
+RUN pip install Flask
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
 
