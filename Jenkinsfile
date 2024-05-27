@@ -4,6 +4,7 @@ pipeline {
     environment {
         dockerImage = ''
         registry = 'adarsh623/mypythonapp:v1'
+        //registry='adarsh623/mypythonapp1'
         registryCredential ='dockerhub-id'
     }
     stages{
@@ -26,6 +27,12 @@ pipeline {
                         dockerImage.push()
                         }
                 }
+            }
+        }
+        stage('Docker pull'){
+            steps {
+                sh 'docker pull adarsh623/mypythonapp:v1'
+                sh 'docker run -d --name python-app-v1 -p 5000:5000 adarsh623/mypythonapp:v1'
             }
         }
     }
