@@ -10,7 +10,7 @@ pipeline {
     stages{
         stage('code checkout'){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Adarsh623/mypythonRepo.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Adarsh623/pythonapp.git']])
             }
         }
         stage('build docker image'){
